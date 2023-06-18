@@ -1,0 +1,129 @@
+<!-- プロジェクト設定のタブ表示 -->
+<%
+  setting = @project.sonarqube_setting || SonarqubeSetting.new
+%>
+
+<%= stylesheet_link_tag("sonarqube", plugin: "redmine_sonarqube") %>
+<%= javascript_include_tag("sonarqube", plugin: "redmine_sonarqube") %>
+
+<%= form_tag({controller: :sonarqube_setting, action: :update, project_id: @project.id},
+             id: 'sonarqube_project',
+             method: 'PUT') do %>
+
+<fieldset id="sonarqube-server-fields" class="box tabular settings">
+  <legend><%= check_box_tag('enable', true, setting.url.present?, id: 'sonarqube-enable') %> Server</legend>
+
+  <p>
+    <label><%= l(:label_sonarqube_url) %>:</label>
+    <input name="url" type="url" style="width: 100%" value="<%= setting.url %>" required="required" />
+  </p>
+
+  <p>
+    <label><%= l(:label_sonarqube_skip_ssl_verify) %>:</label>
+    <%= check_box_tag('skip_ssl_verify', true, setting.skip_ssl_verify) %>
+  </p>
+
+  <p>
+    <label><%= l(:label_sonarqube_link_url) %>:</label>
+    <input name="link_url" type="url" style="width: 100%" value="<%= setting.link_url %>" />
+  </p>
+
+  <p>
+    <label><%= l(:label_sonarqube_token) %>:</label>
+    <input name="password" type="password" style="width: 40%" value="<%= setting.token.present? ? '*****' : nil %>"  required="required" />
+    <%= check_box_tag('enable-token', true, setting.token.blank?, id: 'sonarqube-enable-token') %>
+  </p>
+</fieldset>
+
+<%
+  if setting.url.present?
+
+  @version = ''
+  @sonarqube_projects = []
+  @monitoring_projects = setting.monitoring_projects || []
+
+  begin
+    @version = setting.version
+    @sonarqube_projects = setting.projects
+  rescue => e
+    Rails.logger.error(e)
+    flash[:error] = e.message
+  end
+%>
+
+<fieldset class="box tabular settings">
+  <legend>Information</legend>
+
+  <p>
+    <label><%= l(:label_sonarqube_version) %>:</label>
+    <span><%= @version %></span>
+  </p>
+</fieldset>
+
+<p><%= l(:hint_sonarqube_monitoring_projects) %></p>
+
+<div class="autoscroll">
+  <table class="list entries" id="sonarqube-project-list">
+    <thead>
+      <tr>
+        <th class="checkbox"></th>
+        <th><%= l(:field_name) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sonarqube_projects.each do |proj| %>
+        <tr id="<%= proj.id %>" data-project-key="<%= proj.key %>">
+          <td>
+            <%= check_box_tag("toggle-#{proj.id}", true, @monitoring_projects.include?(proj.key)) %>
+          </td>
+          <td class="name">
+            <span>
+              <%= Addressable::URI.unescape(proj.name) %>
+            </span>
+          </td>
+        </tr>
+      <% end %> <!-- each -->
+    </tbody>
+  </table>
+</div>
+
+<div id="monitoring-project-list" style="display: none">
+  <%= hidden_field_tag('monitoring_projects[]', '') %>
+
+  <% @monitoring_projects.each do |proj_key| %>
+    <%= check_box_tag('monitoring_projects[]', proj_key, true, id: "enable-#{RedmineSonarqube::Utils.project_key(proj_key)}") %>
+  <% end %>
+</div>
+
+<% end %> <!-- if -->
+
+<p>
+  <%= submit_tag l(:button_save) %>
+</p>
+
+<% end %> <!-- form -->
+
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+  const projectList = document.getElementById('sonarqube-project-list');
+  if (projectList != null) {
+    for (const ex of projectList.querySelectorAll('input[type="checkbox"]')) {
+      ex.addEventListener('change', toggleSonarQubeProjectCheckbox);
+    }
+  }
+
+  const enableServer = document.getElementById('sonarqube-enable');
+  enableServer.addEventListener('change', function(e) {
+    toggleSonarQubeServer(e.target);
+  });
+  toggleSonarQubeServer(enableServer);
+
+  const enableServerToken = document.getElementById('sonarqube-enable-token');
+  enableServerToken.addEventListener('change', function(e) {
+    toggleSonarQubeServerToken(e.target);
+  });
+  toggleSonarQubeServerToken(enableServerToken);
+});
+
+</script>

@@ -1,0 +1,19 @@
+en:
+  hint_sonarqube_monitoring_projects: Select for observing SonarQube's project in the below list.
+  label_sonarqube_bugs: Bugs
+  label_sonarqube_codesmells: Code Smells
+  label_sonarqube_coverage: Coverage
+  label_sonarqube_duplicates: Duplicates
+  label_sonarqube_hotspotsreviewed: Hotspots Reviewed
+  label_sonarqube_lines: Lines
+  label_sonarqube_link_url: Link URL
+  label_sonarqube_skip_ssl_verify: Skip SSL certificate verification
+  label_sonarqube_token: Token
+  label_sonarqube_url: URL
+  label_sonarqube_version: Version
+  label_sonarqube_vulnerabilities: Vulnerabilities
+  permission_edit_sonarqube_setting: Edit Setting
+  permission_view_sonarqube: View Project
+  project_module_sonarqube: SonarQube
+  sonarqube_setting: SonarQube
+  title_sonarqube_project: SonarQube Project

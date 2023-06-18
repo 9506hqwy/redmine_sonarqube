@@ -1,0 +1,8 @@
+sonarqube_settings_001:
+  project_id: 5
+  url: https://127.0.0.1:9000
+  link_url: https://sonarqube:9000
+  skip_ssl_verify: false
+  token: token
+  monitoring_projects: |
+    - ProjectA

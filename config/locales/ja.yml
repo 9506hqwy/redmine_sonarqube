@@ -1,0 +1,19 @@
+ja:
+  hint_sonarqube_monitoring_projects: 以下のリストで参照する SonarQube のプロジェクトを選択します。
+  label_sonarqube_bugs: Bugs
+  label_sonarqube_codesmells: Code Smells
+  label_sonarqube_coverage: Coverage
+  label_sonarqube_duplicates: Duplicates
+  label_sonarqube_hotspotsreviewed: Hotspots Reviewed
+  label_sonarqube_lines: Lines
+  label_sonarqube_link_url: リンク URL
+  label_sonarqube_skip_ssl_verify: SSLサーバ証明書の検証をスキップ
+  label_sonarqube_token: トークン
+  label_sonarqube_url: URL
+  label_sonarqube_version: バージョン
+  label_sonarqube_vulnerabilities: Vulnerabilities
+  permission_edit_sonarqube_setting: 設定更新
+  permission_view_sonarqube: プロジェクト参照
+  project_module_sonarqube: SonarQube
+  sonarqube_setting: SonarQube
+  title_sonarqube_project: SonarQube プロジェクト

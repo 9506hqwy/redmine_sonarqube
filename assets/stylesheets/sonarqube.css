@@ -1,0 +1,49 @@
+#sonarqube-project-list th.checkbox {
+    width: 30px;
+}
+
+table.sonarqube-project-list tbody tr {
+    height: 40px;
+}
+
+table.sonarqube-project-list td.status span {
+    color: white;
+    background-color: gray;
+    border-radius: 45px;
+    padding: 5px;
+}
+
+table.sonarqube-project-list td.project-status-ok span {
+    background-color: green;
+}
+
+table.sonarqube-project-list td.project-status-error span {
+    background-color: crimson;
+}
+
+table.sonarqube-project-list span.rating {
+    color: white;
+    background-color: gray;
+    border-radius: 45px;
+    padding: 5px 10px 5px 10px;
+}
+
+table.sonarqube-project-list span.rating-a {
+    background-color: green;
+}
+
+table.sonarqube-project-list span.rating-b {
+    background-color: darkorange;
+}
+
+table.sonarqube-project-list span.rating-c {
+    background-color: darkorange;
+}
+
+table.sonarqube-project-list span.rating-d {
+    background-color: darkorange;
+}
+
+table.sonarqube-project-list span.rating-e {
+    background-color: crimson;
+}

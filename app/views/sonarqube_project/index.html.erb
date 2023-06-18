@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag("sonarqube", plugin: "redmine_sonarqube") %>
+<%= javascript_include_tag("sonarqube", plugin: "redmine_sonarqube") %>
+
+<div class="wiki">
+
+  <h2><%= l(:title_sonarqube_project) %></h2>
+
+  <table class="list sonarqube-project-list">
+    <thead>
+      <tr>
+        <th class="no-sort"><%= l(:field_name) %></th>
+        <th class="no-sort"><%= l(:field_status) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_bugs) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_vulnerabilities) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_hotspotsreviewed) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_codesmells) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_coverage) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_duplicates) %></th>
+        <th class="no-sort"><%= l(:label_sonarqube_lines) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sonarqube_projects.each do |proj| %>
+        <tr>
+          <td class="name">
+            <a class="external" href="<%= proj.url %>" target="_blank">
+              <%= Addressable::URI.unescape(proj.name) %>
+            </a>
+          </td>
+
+          <td class="status project-status-<%= proj.status&.downcase %>">
+            <span><%= proj.status %></span>
+          </td>
+
+          <td class="bugs">
+            <span><%= val_or_default(proj.bugs) %></span>
+            <span class="rating rating-<%= proj.bugs_rating&.downcase %>"><%= proj.bugs_rating %></span>
+          </td>
+
+          <td class="vulnerabilities">
+            <span><%= val_or_default(proj.vulnerabilities) %></span>
+            <span class="rating rating-<%= proj.vulnerabilities_rating&.downcase %>"><%= proj.vulnerabilities_rating %></span>
+          </td>
+
+          <td class="security_hotspots_reviewed">
+            <span><%= val_or_default(proj.security_hotspots_reviewed) %></span>
+            <span class="rating rating-<%= proj.security_hotspots_reviewed_rating&.downcase %>"><%= proj.security_hotspots_reviewed_rating %></span>
+          </td>
+
+          <td class="code_smells">
+            <span><%= val_or_default(proj.code_smells) %></span>
+            <span class="rating rating-<%= proj.code_smells_rating&.downcase %>"><%= proj.code_smells_rating %></span>
+          </td>
+
+          <td class="coverage">
+            <span><%= val_or_default(proj.coverage) %></span>
+            %
+          </td>
+
+          <td class="duplicated_lines_density">
+            <span><%= val_or_default(proj.duplicated_lines_density) %></span>
+            %
+          </td>
+
+          <td class="ncloc">
+            <span><%= humanize1000(proj.ncloc) %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
