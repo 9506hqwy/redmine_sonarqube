@@ -17,7 +17,7 @@ class SonarqubeClientTest < ActiveSupport::TestCase
   def test_project
     WebMock.enable!
 
-    stub_request(:get, "https://127.0.0.1:9000/api/projects/search").
+    stub_request(:get, "https://127.0.0.1:9000/api/components/search_projects").
         to_return(body: '{"components": [{"key": "A", "name": "a"}]}')
 
     projects = @client.projects

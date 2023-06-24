@@ -45,7 +45,7 @@ module RedmineSonarqube
     end
 
     def projects
-      request = Net::HTTP::Get.new(abs_path('api/projects/search'))
+      request = Net::HTTP::Get.new(abs_path('api/components/search_projects'))
       response = send(request)
       json = JSON.parse(response.body)
       json['components'].map do |project|
