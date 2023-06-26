@@ -12,7 +12,7 @@ module RedmineSonarqube
       @link_url = link_url
     end
 
-    attr_reader :url
+    attr_reader :url, :link_url
 
     def project_metrics(key)
       metrics = [
@@ -49,7 +49,7 @@ module RedmineSonarqube
       response = send(request)
       json = JSON.parse(response.body)
       json['components'].map do |project|
-        SonarqubeProject.new(self, project, @link_url)
+        SonarqubeProject.new(self, project)
       end
     end
 

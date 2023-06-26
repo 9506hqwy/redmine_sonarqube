@@ -2,10 +2,10 @@
 
 module RedmineSonarqube
   class SonarqubeProject
-    def initialize(client, project, link_url)
+    def initialize(client, project)
       @client = client
       @project = project
-      @link_url = link_url.presence || client.url
+      @link_url = client.link_url.presence || client.url
     end
 
     def key

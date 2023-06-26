@@ -44,11 +44,13 @@ class SonarqubeSetting < ActiveRecord::Base
   def client
     return @client if @clinet.present?
 
+    link_url_normalize = "#{link_url.chomp('/')}/" if link_url.present?
+
     @client = RedmineSonarqube::SonarqubeClient.new(
-      url,
+      "#{url.chomp('/')}/",
       token,
       skip_ssl_verify,
-      link_url)
+      link_url_normalize)
 
     @client
   end

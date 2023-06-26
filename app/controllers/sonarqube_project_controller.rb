@@ -12,7 +12,7 @@ class SonarqubeProjectController < ApplicationController
       begin
         status = client.project_status(proj_key)
         metrics = client.project_metrics(proj_key)
-        projects.push(RedmineSonarqube::SonarqubeProjectMetrics.new(client, status, metrics, setting.link_url))
+        projects.push(RedmineSonarqube::SonarqubeProjectMetrics.new(client, status, metrics))
       rescue Net::HTTPExceptions => e
         if e.response.code == '404'
           not_found.push(proj_key)

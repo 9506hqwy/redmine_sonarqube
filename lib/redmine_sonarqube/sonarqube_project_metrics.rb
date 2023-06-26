@@ -2,11 +2,11 @@
 
 module RedmineSonarqube
   class SonarqubeProjectMetrics
-    def initialize(client, status, metrics, link_url)
+    def initialize(client, status, metrics)
       @client = client
       @status = status
       @metrics = metrics['component']
-      @link_url = link_url.presence || client.url
+      @link_url = client.link_url.presence || client.url
     end
 
     attr_reader :status
