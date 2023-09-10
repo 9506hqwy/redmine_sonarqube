@@ -23,7 +23,7 @@
       <% @sonarqube_projects.each do |proj| %>
         <tr>
           <td class="name">
-            <a class="external" href="<%= proj.url %>" target="_blank">
+            <a class="external" href="<%= proj.url %>" target="_blank" rel="noopener noreferrer">
               <%= Addressable::URI.unescape(proj.name) %>
             </a>
           </td>
