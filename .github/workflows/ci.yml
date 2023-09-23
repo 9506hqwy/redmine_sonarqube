@@ -115,6 +115,7 @@ jobs:
         if [ "${{ matrix.version }}" = '4.0' ] ; then
             # "\xC5" from ASCII-8BIT to UTF-8 (Encoding::UndefinedConversionError)
             unset COVERAGE
+            mkdir coverage
         fi
 
         bundle exec rake redmine:plugins:test NAME=${PLUGIN_NAME}
