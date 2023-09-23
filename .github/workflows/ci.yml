@@ -111,11 +111,17 @@ jobs:
     - name: Run tests
       run: |
         cd ${REDMINE_HOME}
+
+        if [[ "${{ matrix.version }}" == '4.0' ]] ; then
+            # "\xC5" from ASCII-8BIT to UTF-8 (Encoding::UndefinedConversionError)
+            export -n COVERAGE
+        fi
+
         bundle exec rake redmine:plugins:test NAME=${PLUGIN_NAME}
 
     - name: Generate coverage report
       if: matrix.db == 'sqlite3'
-      run:
+      run: |
         cd ${REDMINE_HOME}
         mkdir -p ${GITHUB_WORKSPACE}/artifacts
         tar -C coverage -zcf ${GITHUB_WORKSPACE}/artifacts/coverage.tar.gz .
