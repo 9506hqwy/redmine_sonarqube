@@ -111,6 +111,7 @@ jobs:
     - name: Check format
       if: matrix.version == '4.2'
       run: |
+        cd ${REDMINE_HOME}
         bundle exec rubocop plugins/${PLUGIN_NAME}/**/*.rb
 
     - name: Run tests
