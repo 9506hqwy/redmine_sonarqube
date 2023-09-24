@@ -112,7 +112,7 @@ jobs:
       if: matrix.version == '4.2'
       run: |
         cd ${REDMINE_HOME}
-        FILES=$(find "plugins/${PLUGIN_NAME}" -name '*.rb')
+        FILES=$(find -L "plugins/${PLUGIN_NAME}" -name '*.rb')
         bundle exec rubocop $FILES
 
     - name: Run tests
