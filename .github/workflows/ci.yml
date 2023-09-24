@@ -108,6 +108,11 @@ jobs:
         bundle exec rake db:drop db:create db:migrate redmine:plugins:migrate
         echo ja | bundle exec rake redmine:load_default_data
 
+    - name: Check format
+      if: matrix.version == '4.2'
+      run: |
+        bundle exec rubocop plugins/${PLUGIN_NAME}/**/*.rb
+
     - name: Run tests
       run: |
         cd ${REDMINE_HOME}
@@ -120,7 +125,7 @@ jobs:
         fi
 
         # skip db:test:prepare
-        bundle exec rake test TEST=plugins/${PLUGIN_NAME}/test/**/*.rb
+        bundle exec rake test TEST=plugins/${PLUGIN_NAME}/test/**/*_test.rb
 
     - name: Generate coverage report
       if: matrix.db == 'sqlite3'
