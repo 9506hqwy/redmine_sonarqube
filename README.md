@@ -90,4 +90,4 @@ This plugin provides a SonarQube's project observation.
   * PostgreSQL 12
 * SonarQube
   * 8.9.3
-  * 10.0.0.0
+  * 10.3.0
