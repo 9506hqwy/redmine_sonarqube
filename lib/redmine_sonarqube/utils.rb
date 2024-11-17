@@ -8,6 +8,13 @@ module RedmineSonarqube
       Migration = ActiveRecord::Migration
     end
 
+    if defined?(ApplicationRecord)
+      # https://www.redmine.org/issues/38975
+      ModelBase = ApplicationRecord
+    else
+      ModelBase = ActiveRecord::Base
+    end
+
     def self.project_key(key)
       digest = Digest::MD5.new
       digest.update(key)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SonarqubeSetting < ActiveRecord::Base
+class SonarqubeSetting < RedmineSonarqube::Utils::ModelBase
   include Redmine::Ciphering
 
   belongs_to :project
