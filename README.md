@@ -78,7 +78,6 @@ This plugin provides a SonarQube's project observation.
 ## Tested Environment
 
 * Redmine (Docker Image)
-  * 3.4
   * 4.0
   * 4.1
   * 4.2
@@ -88,7 +87,7 @@ This plugin provides a SonarQube's project observation.
 * Database
   * SQLite
   * MySQL 5.7 or 8.0
-  * PostgreSQL 12
+  * PostgreSQL 14
 * SonarQube
   * 8.9.3
   * 10.3.0
