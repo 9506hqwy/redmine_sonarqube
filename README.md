@@ -9,17 +9,23 @@ This plugin provides a SonarQube's project observation.
 ## Installation
 
 1. Download plugin in Redmine plugin directory.
+
    ```sh
    git clone https://github.com/9506hqwy/redmine_sonarqube.git
    ```
+
 2. Install dependency libraries in Redmine directory.
+
    ```sh
    bundle install --without development test
    ```
+
 3. Install plugin in Redmine directory.
+
    ```sh
    bundle exec rake redmine:plugins:migrate NAME=redmine_sonarqube RAILS_ENV=production
    ```
+
 4. Start Redmine
 
 ## Configuration
@@ -62,6 +68,7 @@ This plugin provides a SonarQube's project observation.
 - If chagnge `database_cipher_key`, see bellow process.
 
   1. Decrypt ciphered token.
+
      ```sh
      bundle exec rails redmine_sonarqube:db:decrypt RAILS_ENV=production
      ```
@@ -69,6 +76,7 @@ This plugin provides a SonarQube's project observation.
   2. Change value of `database_cipher_key`.
 
   3. Encrypt plain token.
+
      ```sh
      bundle exec rails redmine_sonarqube:db:encrypt RAILS_ENV=production
      ```
@@ -77,17 +85,18 @@ This plugin provides a SonarQube's project observation.
 
 ## Tested Environment
 
-* Redmine (Docker Image)
-  * 4.0
-  * 4.1
-  * 4.2
-  * 5.0
-  * 5.1
-  * 6.0
-* Database
-  * SQLite
-  * MySQL 5.7 or 8.0
-  * PostgreSQL 14
-* SonarQube
-  * 8.9.3
-  * 10.3.0
+- Redmine (Docker Image)
+  - 4.0
+  - 4.1
+  - 4.2
+  - 5.0
+  - 5.1
+  - 6.0
+  - 6.1
+- Database
+  - SQLite
+  - MySQL 5.7 or 8.0
+  - PostgreSQL 14
+- SonarQube
+  - 8.9.3
+  - 10.3.0
